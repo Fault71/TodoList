@@ -8,7 +8,7 @@
       <div class="todo-main">
         <Topper :addTodo='addTodo'></Topper>
         <Middle :todos='todos' :deleteTodo='deleteTodo'></Middle>
-        <Bottom :todos='todos' :clearTodo='clearTodo'></Bottom>
+        <Bottom :todos='todos' :clearTodo='clearTodo' ></Bottom>
       </div>
     </div>
   </div>
@@ -47,7 +47,7 @@ export default {
       this.todos = this.todos.filter((todo)=>{
           return !todo.completed;
       });
-    }
+    },
   }
 }
 </script>

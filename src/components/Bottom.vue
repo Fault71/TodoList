@@ -30,7 +30,7 @@ export default {
       clearCompleted(){
         this.clearTodo();
       }
-    }
+    },
 }
 </script>
 

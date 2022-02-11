@@ -1,24 +1,3 @@
-# cli_test
+1、目前只写了基本的结构样式
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+2、全选功能和选择显示完成或者未完成的任务的功能还未完成

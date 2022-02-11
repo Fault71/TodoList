@@ -1,6 +1,6 @@
 <template>
   <div class="todo-topper">
-        <button><font-awesome-icon class="angle" icon="fa-solid fa-angle-down" /></button>
+        <button ><font-awesome-icon class="angle" icon="fa-solid fa-angle-down" /></button>
         <input class="top-inp" type="text" placeholder="What needs to be done?" @keyup.enter="add" v-model.trim="item">
     </div>
 </template>
@@ -22,7 +22,7 @@ export default {
         const newTodo = {id:nanoid(),name:this.item,completed:false};
         this.addTodo(newTodo);
         this.item = '';
-      }
+      },
     }
 }
 </script>
