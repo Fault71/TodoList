@@ -1,63 +1,89 @@
 <template>
 
-  <div id="app" class="clearfix">
+  <div
+    id="app"
+    class="clearfix"
+  >
     <div class="container clearfix">
       <div class="todo-header">
         <div class="title">todos</div>
       </div>
       <div class="todo-main">
-        <Topper :addTodo='addTodo'></Topper>
-        <Middle :todos='todos' :deleteTodo='deleteTodo'></Middle>
-        <Bottom :todos='todos' :clearTodo='clearTodo' ></Bottom>
+        <TodoListTop
+          :todos='todos'
+          :addTodo='addTodo'
+        />
+        <TodoListMiddle
+          :todos='todos'
+          :deleteTodo='deleteTodo'
+          :visibility='visibility'
+        />
+        <TodoListBottom
+          :todos='todos'
+          :clearTodo='clearTodo'
+          @getVisibility='getVisibility'
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Topper from './components/Topper.vue'
-import Middle from './components/Middle.vue'
-import Bottom from './components/Bottom.vue'
+import TodoListTop from './components/TodoListTop.vue';
+import TodoListMiddle from './components/TodoListMiddle.vue';
+import TodoListBottom from './components/TodoListBottom.vue';
 
 export default {
   name: 'App',
+
   components: {
-    Topper,Middle,Bottom
+    TodoListTop,
+    TodoListMiddle,
+    TodoListBottom,
   },
+
   data() {
-      return {
-        todos:[
-          {id:'001',name:'study',completed:true},
-          {id:'002',name:'study',completed:true},
-          {id:'003',name:'study',completed:false},
-          {id:'004',name:'study',completed:false}
-        ]
-      }
+    return {
+      todos: JSON.parse(localStorage.getItem('todos')) || [],
+      visibility: 'all',
+    };
   },
+
+  watch: {
+    todos: {
+      deep: true,
+      handler(value) {
+        localStorage.setItem('todos', JSON.stringify(value));
+      },
+    },
+  },
+
   methods: {
-    addTodo(todo){
+    addTodo(todo) {
       this.todos.unshift(todo);
     },
-    deleteTodo(id){
-      this.todos = this.todos.filter((todo)=>{
-        return todo.id != id; 
-      });
+
+    deleteTodo(id) {
+      this.todos = this.todos.filter((todo) => todo.id !== id);
     },
-    clearTodo(){
-      this.todos = this.todos.filter((todo)=>{
-          return !todo.completed;
-      });
+
+    clearTodo() {
+      this.todos = this.todos.filter((todo) => !todo.completed);
     },
-  }
-}
+
+    getVisibility(status) {
+      this.visibility = status;
+    },
+  },
+};
 </script>
 
 <style>
   *{
-      text-decoration: none;
-      margin: 0;
-      padding: 0;
-      list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
   .clearfix::before,.clearfix::after{
     content: '';
@@ -66,6 +92,7 @@ export default {
   }
   #app{
     background-color: gainsboro;
+    height: 100%;
   }
   .container{
     width: 550px;
