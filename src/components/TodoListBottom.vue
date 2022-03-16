@@ -1,4 +1,3 @@
-/* eslint-disable space-before-blocks */
 <template>
   <div
     class="todo-bottom"

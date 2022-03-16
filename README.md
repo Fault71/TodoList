@@ -3,3 +3,5 @@
 2、将原本的for循环用reduce数组方法重写
 
 3、将Middle中筛选数据原本所用的if-else结构用对象结构重写
+
+4、branch
